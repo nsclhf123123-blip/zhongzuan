@@ -2,8 +2,8 @@ export const config = { runtime: "edge" };
 
 export default async function handler(req) {
   try {
-    // 从请求头手动拼装路径，不再依赖 req.url
-    const path = new URL(req.url, "https://dummy").pathname + new URL(req.url, "https://dummy").search;
+    const baseUrl = new URL(req.url, "https://dummy");
+    const path = baseUrl.pathname + baseUrl.search;
     const target = new URL(path, "https://generativelanguage.googleapis.com");
 
     const h = new Headers(req.headers);
